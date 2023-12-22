@@ -1,0 +1,84 @@
+<div class="slider">
+
+
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+
+	<ul class="slider__wrapper" [style.transform] = "'translateX(-' + currentSlide * (100 / data.length) + '%)'">
+		<li *ngFor="let slide of data" 
+        class="slide" 
+        [class.slide--current]="slide.index === currentSlide" 
+        [class.slide--next]="slide.index === currentSlide + 1"
+        [class.slide--previous]="slide.index === currentSlide - 1"
+        (click)="onSlideClick(slide.index)">
+        <section class="Cards">
+            <!--CARD1-->
+            <div class="product_card">
+              <img  [src]="slide.src" class="slide__image" alt="PRODUCT"  (click)="onClick($event)"    
+               data-toggle="modal" data-target="#myModal">
+              <section>
+                <h1 class="name">{{slide.name}}</h1>
+                <div class="title">{{slide.age}},
+                    {{slide.height}},
+                    {{slide.Religion}},
+                    {{slide.Ocupation}} ,
+                    {{slide.Location}}
+                </div>
+                <div class="btn">
+                  <button (click)="success()" >Yes</button>
+                  <a routerLink="profile"><button>No</button></a>
+                </div>
+              
+              </section>
+            </div>
+          </section>
+        <!-- <div class="card">
+			<div class="slide__image-wrapper">
+				<img class="slide__image" [src]="slide.src"  style="opacity: 1;"
+                (click)="onClick($event)"     data-toggle="modal" data-target="#myModal"
+                />
+            </div>
+        </div>
+          <div class="modal-content">
+            <button class="button-header"[ngClass]="{'#FEBE10':slide.active, 'grey':!slide.active}"   (click)="success()"  >{{slide.active }} </button>&nbsp;
+            <!-- <button class="button-header">No</button> -->
+        <!-- </div> --> 
+        <div *ngIf="alert"  class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong class="text-type">I m Interested!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeAlert()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </li>
+  </ul>
+  <div  *ngIf="close" class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"  (click)="closeImage()">&times;</button>
+        </div>
+        <div class="modal-body">
+        <img
+        src="{{imgSrc}}"
+        style="max-width:100%;cursor:pointer"
+        class="modal-hover-opacity"
+      /> 
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <div class="slider__controls">
+    <button class="btn btn--previous" title="Go to previous slide" (click)="onPreviousClick()">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+      </svg>
+    </button>
+    <button class="btn btn--next" title="Go to next slide"  (click)="onNextClick()">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+      </svg>
+    </button>
+  </div>
+</div>
